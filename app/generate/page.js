@@ -14,7 +14,7 @@ async function getIncident() {
 }
 
 async function IncidentImage({prompt}) {
-    const response = await fetch('http://localhost:3000/api/image', {
+    const response = await fetch('/api/image', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
