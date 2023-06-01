@@ -12,6 +12,9 @@ function Page({ countries }) {
                 {country.prompt}
                     {/* {imageResponse.enhancedPrompt} */}
                 </p>
+                <a href={country.url} target='_blank'>
+                  {country.url}
+                </a>
             </div>
 
             <div className="border rounded-xl max-w-2xl overflow-hidden mx-auto shadow-md">
