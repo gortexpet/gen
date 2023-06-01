@@ -1,10 +1,10 @@
-import { supabase } from '../app/lib/supabaseClient';
+import { supabase } from '../lib/supabaseClient';
 import Image from 'next/image';
 
 function Page({ countries }) {
   return (
     <div>
-          {countries.map((country) => (
+          {countries && countries.map((country) => (
             <div key={country.id}>
             
             <div className='mb-6 mx-auto max-w-lg'>
@@ -15,12 +15,15 @@ function Page({ countries }) {
             </div>
 
             <div className="border rounded-xl max-w-2xl overflow-hidden mx-auto shadow-md">
-            <Image
-      src={country.url}
-      width={1024}
-                height={1024}
-                alt={country.prompt}
-                />
+              { country.url &&
+     <Image
+     src={country.url}
+     width={1024}
+     height={1024}
+     alt={country.prompt}
+     />
+              }
+       
             </div>
 
 
@@ -34,7 +37,7 @@ function Page({ countries }) {
 
 export async function getServerSideProps() {
   let { data } = await supabase.from('AAA').select()
-
+console.log(data)
   return {
     props: {
      countries: data

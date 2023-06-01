@@ -1,6 +1,6 @@
 module.exports =
     { 
-        experimental: { appDir: true },
+        experimental: { appDir: false },
 
     reactStrictMode: false,
     images: {
