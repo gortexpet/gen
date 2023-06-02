@@ -16,7 +16,7 @@ function getPrompt(data) {
 
 async function getIncident() {
   const res = await fetch(
-    "https://services1.arcgis.com/UWYHeuuJISiGmgXx/arcgis/rest/services/911_Calls_for_Service_2022_New/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson", {next: {revalidate: 60}}
+    "https://services1.arcgis.com/UWYHeuuJISiGmgXx/arcgis/rest/services/911_Calls_for_Service_2022_New/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson"
   );
   const data = await res.json();
   return data;
