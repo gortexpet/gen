@@ -4,7 +4,9 @@ import Image from "next/image";
 import { enhancedPrompt, createImage } from "../lib/openAIClient";
 import Storage from "../lib/storage";
 
-async function getPrompt(data) {
+export const revalidate = 10;
+
+function getPrompt(data) {
   const entry =
     data.features[Math.floor(Math.random() * data.features.length)].properties;
   const prompt = `${entry.priority} priority ${entry.description} in the neighborhood of ${entry.Neighborhood} at ${entry.location}, ${entry.ZIPCode}`;
@@ -15,6 +17,7 @@ async function getIncident() {
   const res = await fetch(
     "https://services1.arcgis.com/UWYHeuuJISiGmgXx/arcgis/rest/services/911_Calls_for_Service_2022_New/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson"
   );
+  console.log(res)
   return await res.json();
   // return data;
 }
@@ -61,7 +64,7 @@ async function IncidentImage({ prompt }) {
 
 export default async function Page() {
   const incident = await getIncident();
-  const prompt = await getPrompt(incident);
+  const prompt =  getPrompt(incident);
   return (
     <>
       <Suspense
