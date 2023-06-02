@@ -6,7 +6,7 @@ import Storage from "../lib/storage";
 
 export const revalidate = 0
 
-function getPrompt(data) {
+async function getPrompt(data) {
   const entry =
     data.features[Math.floor(Math.random() * data.features.length)].properties;
   const prompt = `${entry.priority} priority ${entry.description} in the neighborhood of ${entry.Neighborhood} at ${entry.location}, ${entry.ZIPCode}`;
@@ -22,18 +22,28 @@ async function getIncident() {
 }
 
 async function GenImage({ incident }) {
-  const i = await createImage(incident);
-  const url = i.data.data[0].url;
+  const {data, error} = await createImage(incident);
+  console.log(data, error)
+  // if(data) {
+    const url = data?.data[0].url;
+  // }
   return (
     <div className="border rounded-xl max-w-2xl overflow-hidden mx-auto shadow-md">
-      <Image
-        id="gen-image"
-        src={url}
-        width={1024}
-        height={1024}
-        alt={incident}
-      />
-      <Storage prompt={incident} />
+    { url &&
+<div>
+
+<Image
+          id="gen-image"
+          src={url}
+          width={1024}
+          height={1024}
+          alt={incident}
+        />
+        <Storage prompt={incident} />
+
+
+</div>
+      }
     </div>
   );
 }
@@ -53,7 +63,7 @@ async function IncidentImage({ prompt }) {
 
 export default async function Page() {
   const incident = await getIncident();
-  const prompt = getPrompt(incident);
+  const prompt = await getPrompt(incident);
   return (
     <>
       <Suspense

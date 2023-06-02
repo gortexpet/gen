@@ -39,11 +39,8 @@ const storeImage = async (bsixty, prompt) => {
 function getBase64Image(imgUrl, callback) {
 
   var img = new Image();
-
   // onload fires when the image is fully loadded, and has width and height
-
   img.onload = function(){
-
     var canvas = document.createElement("canvas");
     canvas.width = img.width;
     canvas.height = img.height;
