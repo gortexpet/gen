@@ -2,7 +2,6 @@ import { supabase } from "./lib/supabaseClient";
 import Image from "next/image";
 import { Suspense } from "react";
 
-
 async function EntriesList() {
   const data = await getData();
 

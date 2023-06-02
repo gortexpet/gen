@@ -36,7 +36,6 @@ const storeImage = async (bsixty, prompt) => {
     }
 }
 
-
 function getBase64Image(imgUrl, callback) {
 
   var img = new Image();
@@ -63,16 +62,17 @@ function getBase64Image(imgUrl, callback) {
 
 }
 
-
 export default function Storage({prompt}) {
   useEffect(() => {
+    console.log('storage')
     const genurl = document.getElementById('gen-image').getAttribute('src')
+    console.log(genurl)
     getBase64Image(genurl, function(base64image){
       storeImage(base64image, prompt)
   });
     return () => {
      };
-  }, [prompt]);
+  }, []);
   return (
     <div></div>
   );
