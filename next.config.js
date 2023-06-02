@@ -1,6 +1,6 @@
 module.exports =
     { 
-        experimental: { appDir: false },
+        experimental: { appDir: true  },
 
     reactStrictMode: false,
     images: {
@@ -11,6 +11,10 @@ module.exports =
             // port: '',
             // pathname: '/account123/**',
           },
+          {
+            protocol: 'https',
+            hostname: 'clmauxireerjpgirlklz.supabase.co',
+          }
         ],
       },
 

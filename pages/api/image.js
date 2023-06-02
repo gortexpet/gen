@@ -1,4 +1,6 @@
 import { Configuration, OpenAIApi } from "openai";
+import { supabase } from '../../app/lib/supabaseClient';
+
 const configuration = new Configuration({
     // organization: "org-fzcWoVVemrdR8Gmg1r3qtWfQ",
     apiKey: process.env.OPENAI_API_KEY,
@@ -32,8 +34,18 @@ export default async function handler(req, res) {
     });
 
     if (!response.data) throw new Error('Unable to get image');
+
+
+let blob = await fetch(response.data.data[0].url)
+.then(function(response) {
+  return response.blob()
+}).then(function(b) {
+    return b
+  });
+
     console.log('received url ' + response.data.data[0].url);
+    console.log('received blob ' + blob);
 
     // return response.data.data[0].url;
-    res.status(200).json({ imageURL: response.data.data[0].url, prompt:`Summarize: ${req.body.prompt}`, enhancedPrompt: enhancedPrompt.data.choices[0].text })
+    res.status(200).json({ imgBlob: blob, imageURL: response.data.data[0].url, prompt:`Summarize: ${req.body.prompt}`, enhancedPrompt: enhancedPrompt.data.choices[0].text })
 }
