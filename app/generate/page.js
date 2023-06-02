@@ -4,7 +4,7 @@ import Image from "next/image";
 import { enhancedPrompt, createImage } from "../lib/openAIClient";
 import Storage from "../lib/storage";
 
-export const revalidate = 10;
+export const revalidate = 0;
 export const fetchCache = 'force-no-store';
 
 function getPrompt(data) {
@@ -40,6 +40,8 @@ async function GenImage({ incident }) {
           width={1024}
           height={1024}
           alt={incident}
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
         />
         <Storage prompt={incident} />
 

@@ -24,6 +24,8 @@ async function EntriesList() {
               width={1024}
               height={1024}
               alt={entry.prompt}
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
             />
           </div>
         </div>
