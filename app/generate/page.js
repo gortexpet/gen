@@ -4,8 +4,6 @@ import Image from "next/image";
 import { enhancedPrompt, createImage } from "../lib/openAIClient";
 import Storage from "../lib/storage";
 
-export const revalidate = 0
-
 async function getPrompt(data) {
   const entry =
     data.features[Math.floor(Math.random() * data.features.length)].properties;
@@ -50,7 +48,7 @@ async function GenImage({ incident }) {
 
 async function IncidentImage({ prompt }) {
   const p = await enhancedPrompt(prompt);
-  const incident = p.data.choices[0].text;
+  const incident = p?.data.choices[0].text;
   return (
     <div className="mx-auto max-w-7xl px-6 lg:px-8 py-16">
       <div className="mb-6 mx-auto max-w-lg">
