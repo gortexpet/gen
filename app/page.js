@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Suspense } from "react";
 
 export const revalidate = 10;
+export const fetchCache = 'force-no-store';
 
 async function EntriesList() {
   const data = await getData();

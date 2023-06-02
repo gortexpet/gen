@@ -5,6 +5,7 @@ import { enhancedPrompt, createImage } from "../lib/openAIClient";
 import Storage from "../lib/storage";
 
 export const revalidate = 10;
+export const fetchCache = 'force-no-store';
 
 function getPrompt(data) {
   const entry =
